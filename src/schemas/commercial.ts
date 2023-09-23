@@ -25,6 +25,13 @@ export default defineType({
       title: 'Body',
       type: 'blockContent',
     }),
+    defineField({  
+      name: 'work',
+      title: 'Work',
+      type: 'array',
+      options: {layout: 'grid'},
+      of: [{type: 'commercialWork'}],
+    }),
   ],
   preview: {
     select: {

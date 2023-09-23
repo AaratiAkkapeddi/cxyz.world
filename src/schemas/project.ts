@@ -4,6 +4,10 @@ export default defineType({
   name: 'project',
   title: 'Project',
   type: 'document',
+  initialValue: {
+    private: false,
+    video: false,
+  },
   fields: [
     defineField({
       name: 'title',
@@ -27,10 +31,10 @@ export default defineType({
       description: 'If this project is a film, set to true',
     }),
     defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'text',
-      rows: 4,
+      name:'private',
+      type: 'boolean',
+      title: 'Should this project be hidden from the projects page?',
+      description: 'set to true if you want to hide this project from other parts of the website',
     }),
     defineField({
       name: 'mainImage',
