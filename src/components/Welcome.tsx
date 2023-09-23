@@ -14,7 +14,7 @@ export default function Welcome() {
         <Image className="logos__entry" src={SanityLogo} alt="Sanity Logo" />
       </div>
       <div className="steps">
-        <h2 className="steps__title">Next steps</h2>
+        <h2 className="steps__title">Hello World</h2>
         <ul className="steps__list">
           <li className="steps__entry">
             <h3 className="steps__subtitle">Publish a post in your Studio</h3>

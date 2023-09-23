@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'post',
-  title: 'Post',
+  name: 'project',
+  title: 'Project',
   type: 'document',
   fields: [
     defineField({
@@ -21,6 +21,12 @@ export default defineType({
       },
     }),
     defineField({
+      name:'video',
+      type: 'boolean',
+      title: 'Is this project moving image/film/video?',
+      description: 'If this project is a film, set to true',
+    }),
+    defineField({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',
@@ -34,6 +40,13 @@ export default defineType({
         hotspot: true,
       },
     }),
+    defineField({  
+        name: 'media',
+        title: 'Image(s)',
+        type: 'array',
+        options: {layout: 'grid'},
+        of: [{type: 'mediaItem'}],
+    }),
     defineField({
       name: 'body',
       title: 'Body',
@@ -43,7 +56,6 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      author: 'author.name',
       media: 'mainImage',
     },
   },
