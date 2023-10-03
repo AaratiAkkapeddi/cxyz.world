@@ -25,6 +25,13 @@ export default defineType({
       title: 'Body',
       type: 'blockContent',
     }),
+    defineField({  
+      name: 'questions',
+      title: 'Questions',
+      type: 'array',
+      options: {layout: 'grid'},
+      of: [{type: 'string'}],
+    }),
   ],
   preview: {
     select: {
