@@ -437,21 +437,22 @@ section.projects .media{
 
 section.projects .media img{
   height: auto;
-  margin: var(--space-outer-2) 0;
   display: block;
   width: 100%;
   position:relative;
 }
-
+section.projects .media .img-wrapper{
+  margin: var(--space-outer-2) 0;
+}
 .info-toggle{
   cursor: pointer;
 }
 section.projects{
   width: calc(100% - (150px + var(--space-outer-2)));
 }
-section.projects .video-container{
-  margin: var(--space-outer-2) 0;
+.media figcaption{
+  margin-top: var(--space-outer-2);
 }
 .project__content{
-  margin-bottom: var(--space-outer-1);
+
 }

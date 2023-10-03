@@ -70,17 +70,30 @@ export default function ProjectSlugRoute(
     setShowInfo(!showInfo)
   }
   const med = project.media.map((media, i)=>{
+    console.log(media)
     if(media.embed?.embed?.length > 0){
-      return (<div className="video-container" dangerouslySetInnerHTML={{ __html: media.embed?.embed }} />)
+      return (
+      <div key={i} className='img-wrapper'>
+        <div className="video-container" dangerouslySetInnerHTML={{ __html: media.embed?.embed }} />
+        {media.embed?.caption &&
+        <figcaption>{media.embed?.caption?.toString()}</figcaption>
+        }
+      </div>)
     }else{
       return (
-      <Image
-        className="project__cover"
-        src={urlForImage(media.image).url()}
-        height={3000}
-        width={3000}
-        alt=""
-      />
+        <div key={i} className='img-wrapper'>
+          <Image
+          className="project__cover"
+          src={urlForImage(media.image).url()}
+          height={3000}
+          width={3000}
+          alt={media.image.altText?.toString()}
+        />  
+        {media.image?.caption &&
+        <figcaption>{media.image?.caption?.toString()}</figcaption>
+        }
+        </div>
+      
       )
     }
   })

@@ -203,9 +203,9 @@ export interface Project {
     private: boolean,
     image: ImageAsset,
     embed:{
-      embed: Text
-      altText: Text
-      caption : Text
+      embed: string
+      altText: string
+      caption : string
     },
   }[]
   body: PortableTextBlock[]
