@@ -47,8 +47,8 @@ export const getStaticProps: GetStaticProps<
       draftMode,
       token: draftMode ? readToken : '',
       blog,
+      news,
       posts,
-      news
     },
   }
 }

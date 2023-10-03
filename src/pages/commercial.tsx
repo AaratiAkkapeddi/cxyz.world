@@ -65,9 +65,13 @@ export default function commercialPage(
   const [news] = useLiveQuery(props.news, newsBySlugQuery, {
     slug: props.news.title,
   })
+
+
+
   const works = commercial.work.map((w, i) => {
     return(<li key={i}><a href={w.link}><span>{w.client}</span><span>{w.title}</span></a></li>)
   })
+
   return (
     <Container news={news}>
       <section className="commercial">

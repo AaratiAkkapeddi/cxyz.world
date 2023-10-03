@@ -1,7 +1,7 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
 
-import Card from '~/components/Card'
+// import Card from '~/components/Card'
 import Container from '~/components/Container'
 import Welcome from '~/components/Welcome'
 import { readToken } from '~/lib/sanity.api'
@@ -42,7 +42,7 @@ export default function IndexPage(
     <Container news={news}>
       <section>
         {projects.length ? (
-          projects.map((project) => <Card key={project._id} project={project} />)
+          projects.map((project) => <div>{project.title}</div>)
         ) : (
           <Welcome />
         )}

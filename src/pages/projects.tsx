@@ -2,7 +2,7 @@ import { PortableText } from '@portabletext/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Image from 'next/image'
 import { useLiveQuery } from 'next-sanity/preview'
-import Card from '~/components/Card'
+// import Card from '~/components/Card'
 import Container from '~/components/Container'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
@@ -86,7 +86,7 @@ export default function blogPage(
           <div className="page__cover--none" />
         )}
         {projects.length ? (
-          projects.map((project) => <Card key={project._id} project={project} />)
+          projects.map((project) => <div>{project.title}</div>)
         ) : (
           "coming soon"
         )}

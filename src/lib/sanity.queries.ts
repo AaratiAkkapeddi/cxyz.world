@@ -51,7 +51,7 @@ export const aboutBySlugQuery = groq`*[_type == "about" && slug.current == $slug
 export async function getAbout(
   client: SanityClient,
   slug: string,
-): Promise<Post> {
+): Promise<About> {
   return await client.fetch(aboutBySlugQuery, {
     slug,
   })
@@ -81,7 +81,7 @@ export const blogBySlugQuery = groq`*[_type == "blog" && slug.current == $slug][
 export async function getBlog(
   client: SanityClient,
   slug: string,
-): Promise<Post> {
+): Promise<Blog> {
   return await client.fetch(blogBySlugQuery, {
     slug,
   })
@@ -112,7 +112,7 @@ export const commercialBySlugQuery = groq`*[_type == "commercial" && slug.curren
 export async function getCommercial(
   client: SanityClient,
   slug: string,
-): Promise<Post> {
+): Promise<Commercial> {
   return await client.fetch(commercialBySlugQuery, {
     slug,
   })
@@ -132,8 +132,8 @@ export interface Commercial {
   work: {
     title: string,
     client: string,
-    link: Url
-  }
+    link: string
+  }[]
 }
 
 /***************NEWS*******************/
@@ -148,7 +148,7 @@ export const newsBySlugQuery = groq`*[_type == "news" && title == $title][0]`
 export async function getNews(
   client: SanityClient,
   title: string,
-): Promise<Post> {
+): Promise<News> {
   return await client.fetch(newsBySlugQuery, {
     title,
   })
