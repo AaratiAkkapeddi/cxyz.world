@@ -5,7 +5,7 @@ import { PortableText } from '@portabletext/react'
 export default function Container(props, { children }: { children: React.ReactNode }) {
 
   return (
-    <div className="container">
+    <div className={props.invert ? "container inverted": "container"}>
       <nav>
         <ul>
           <li><Link href="/"><h1>chen xiangyun</h1></Link></li>
@@ -16,7 +16,7 @@ export default function Container(props, { children }: { children: React.ReactNo
         </ul>
         <div>
          news:<br></br>
-         <PortableText value={props.news.body} />
+         <PortableText value={props.news?.body} />
         </div>
         <ul>
           <li><a href="">email</a></li>

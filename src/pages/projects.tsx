@@ -4,14 +4,11 @@ import Image from 'next/image'
 import { useLiveQuery } from 'next-sanity/preview'
 // import Card from '~/components/Card'
 import Container from '~/components/Container'
+import Link from 'next/link'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 import { urlForImage } from '~/lib/sanity.image'
 import {
-  getBlog,
-  type Blog,
-  blogBySlugQuery,
-  blogSlugsQuery,
   getNews,
   type News,
   newsBySlugQuery,
@@ -26,71 +23,56 @@ interface Query {
 
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
-    blog: Blog,
     news: News,
     projects: Project[],
   },
   Query
 > = async ({ draftMode = false, params = {} }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const blog = await getBlog(client, "blog")
   const news = await getNews(client, "News")
   const projects = await getProjects(client)
-  if (!blog) {
-    return {
-      notFound: true,
-    }
-  }
+
 
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
-      blog,
       projects,
       news
     },
   }
 }
 
-export default function blogPage(
+export default function projectsPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const [blog] = useLiveQuery(props.blog, blogBySlugQuery, {
-    slug: "blog",
-  })
+
   const [news] = useLiveQuery(props.news, newsBySlugQuery, {
     slug: props.news.title,
   })
   const [projects] = useLiveQuery<Project[]>(props.projects, projectsQuery)
 
+  
   return (
     <Container news={news}>
-      <section className="blog">
+      <section className="projects">
         
         <div className="page__container">
-          <h1 className="page__title">{blog.title}</h1>
-          {/* <div className="page__content">
-            <PortableText value={blog.body} />
-          </div> */}
+          <h1 className="page__title">coming soon..</h1>
         </div>
-        {blog.mainImage ? (
-          <Image
-            className="page__cover"
-            src={urlForImage(blog.mainImage).url()}
-            height={231}
-            width={367}
-            alt=""
-          />
-        ) : (
-          <div className="page__cover--none" />
-        )}
-        {projects.length ? (
-          projects.map((project) => <div>{project.title}</div>)
-        ) : (
-          "coming soon"
-        )}
+        
+
+        <div className="subnav">
+          <ul>
+          {projects.length ? (
+            projects.map((project, i) => <li key={i}><Link href={"project/" + project.slug.current}>{project.title}</Link></li>)
+          ) : (
+            "coming soon"
+          )}
+          </ul>
+        </div>
       </section>
+
     </Container>
   )
 }

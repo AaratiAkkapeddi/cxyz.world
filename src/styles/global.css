@@ -29,7 +29,7 @@
   --gray-200: #ced2d9;
   --gray-600: #6e7683;
   --red: #C50009;
-
+  --deepblack: #110E0C;
   --max-width-0: 320px;
   --max-width-1: 768px;
 }
@@ -67,7 +67,10 @@ nav{
   padding: var(--space-outer);
   flex-direction: column;
   justify-content: space-between;
-  border-right: 2px solid #C50009;
+  position:fixed;
+  top:0;
+  left:0;
+  border-right: 2px solid var(--red);
 }
 nav h1{
   margin-top:0;
@@ -86,11 +89,18 @@ nav ul{
   display: flex;
   width: 100%;
 }
+.container.inverted, .container.inverted nav, .container.inverted .subnav{
+  color:var(--white);
+  background-color: var(--deepblack);
+}
+.container.inverted nav, .container.inverted .subnav{
+  border-color: var(--white);
+}
 
 main {
-  padding: var(--space-outer);
-  padding-left:var(--space-outer-2);
-  width: calc(100% - (var(--space-outer-2) + var(--space-outer-2)) - 200px);
+  padding: var(--space-outer) var(--space-outer-2);
+  margin-left: calc(150px + var(--space-outer-2));
+  width: calc(100% - (var(--space-outer-2) + var(--space-outer-2)));
 }
 
 .header {
@@ -381,4 +391,67 @@ section.about > img{
   
   }
 
+}
+
+/* Projects Index */
+section.projects .page__container, section.projects .project__container{
+  width: calc(100% - (150px + (var(--space-outer-2) * 4)));
+  padding: 0 var(--space-outer-2);
+  margin: 0 auto;
+}
+.project__title{
+  margin-top:0;
+}
+section.projects .subnav{
+  color: var(--red);
+  border-left: 2px solid var(--red);
+  color: var(--red);
+  display: flex;
+  max-width: 150px;
+  height: calc(100vh - 40px);
+  padding: var(--space-outer);
+  flex-direction: column;
+  position: fixed;
+  right: 0;
+  top:0;
+  justify-content: space-between;
+}
+section.projects .subnav ul{
+  list-style: none;
+  padding-left:0;
+}
+section.projects .subnav ul li{
+  margin-bottom: calc(var(--space-outer)/2);
+}
+section.projects .subnav ul li a{
+  text-decoration: none;
+  font-family: var(--font-family-sans);
+}
+section.projects .subnav ul li.on a{
+  font-family: var(--font-family-serif);
+}
+section.projects .media{
+  position: relative;
+  overflow: hidden;
+}
+
+section.projects .media img{
+  height: auto;
+  margin: var(--space-outer-2) 0;
+  display: block;
+  width: 100%;
+  position:relative;
+}
+
+.info-toggle{
+  cursor: pointer;
+}
+section.projects{
+  width: calc(100% - (150px + var(--space-outer-2)));
+}
+section.projects .video-container{
+  margin: var(--space-outer-2) 0;
+}
+.project__content{
+  margin-bottom: var(--space-outer-1);
 }

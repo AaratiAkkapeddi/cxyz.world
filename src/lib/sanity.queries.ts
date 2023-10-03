@@ -196,8 +196,18 @@ export interface Project {
   _createdAt: string
   title?: string
   slug: Slug
+  video: boolean
   excerpt?: string
   mainImage?: ImageAsset
+  media: {
+    private: boolean,
+    image: ImageAsset,
+    embed:{
+      embed: Text
+      altText: Text
+      caption : Text
+    },
+  }[]
   body: PortableTextBlock[]
 }
 
