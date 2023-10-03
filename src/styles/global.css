@@ -1,30 +1,14 @@
+
 :root {
-  --space-0: 0;
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 20px;
-  --space-5: 32px;
-  --space-6: 52px;
-  --space-7: 84px;
-  --space-8: 136px;
-  --space-9: 220px;
+  --space-outer: 20px;
+  --space-outer-2: 40px;
+  --font-family-sans: 'Ignazio Text', sans-serif;
+  --font-family-serif: 'Ortica Angular', serif;
 
-  --font-family-sans: Inter;
-  --font-family-serif: PT Serif;
-  --font-family-mono: IMB Plex Mono;
 
-  --font-size-0: 12px;
-  --font-size-1: 14px;
-  --font-size-2: 16px;
-  --font-size-3: 18px;
-  --font-size-4: 20px;
-  --font-size-5: 24px;
-  --font-size-6: 30px;
-  --font-size-7: 36px;
-  --font-size-8: 48px;
-  --font-size-9: 60px;
-  --font-size-10: 72px;
+  --font-size-regular: 16px;
+  --font-size-large: 24px;
+
 
   --line-height-0: 16px;
   --line-height-1: 20px;
@@ -40,12 +24,11 @@
   --line-height-11: 96px;
   --line-height-12: 128px;
 
-  --white: #fff;
-  --black: #101112;
+  --white: #EFF3F5;
+  --black: #122B19;
   --gray-200: #ced2d9;
   --gray-600: #6e7683;
-  --blue-600: #1e61cd;
-  --magenta-100: #f9d7eb;
+  --red: #C50009;
 
   --max-width-0: 320px;
   --max-width-1: 768px;
@@ -57,120 +40,57 @@ html {
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  font-size:var(--font-size-regular);
 }
+
+h1{
+  font-size:var(--font-size-large);
+  font-family: var(--font-family-serif);
+}
+a:link, a, a:visited{
+  color: inherit;
+}
+
 
 body {
   margin: 0;
+  color: var(--black);
+  background-color: var(--white);
 }
 
-/* Post page */
-.post {
-  width: 100%;
-  margin: var(--space-1) 0 var(--space-4);
+/* Navigation */
+nav{
+  color: var(--red);
+  display: flex;
+  max-width: 150px;
+  height: calc(100vh - 40px);
+  padding: var(--space-outer);
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 2px solid #C50009;
 }
-
-.post .post__cover,
-.post .post__cover--none {
-  width: 100%;
-  height: 200px;
-  -o-object-fit: cover;
-  object-fit: cover;
+nav h1{
+  margin-top:0;
 }
-
-.post .post__cover--none {
-  background: var(--black);
-}
-
-.post .post__container {
-  padding: 0 var(--space-3);
-}
-
-.post .post__content {
-  font-family: var(--font-family-serif);
-  font-weight: 400;
-  font-size: var(--font-size-4);
-  line-height: var(--line-height-5);
-  letter-spacing: -0.02em;
-  margin-top: var(--space-6);
-
-  /* Targeting tags in PortableText */
-}
-
-.post .post__content blockquote {
-  border-left: 5px solid var(--black);
-  padding-left: var(--space-3);
-  margin-left: var(--space-4);
-}
-
-.post .post__content a {
-  color: var(--blue-600);
+nav a{
   text-decoration: none;
 }
-
-.post .post__title {
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-7);
-  line-height: var(--line-height-6);
-  margin: var(--space-4) 0;
-  font-weight: 800;
+nav ul{
+  list-style: none;
+  padding-left:0;
+  margin:0;
 }
-
-.post .post__excerpt {
-  font-family: var(--font-family-serif);
-  font-size: var(--font-size-5);
-  line-height: var(--line-height-4);
-  margin-top: 0;
-  font-weight: 400;
-}
-
-.post .post__date {
-  font-family: var(--font-family-sans);
-  font-weight: 600;
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-1);
-  line-height: var(--line-height-1);
-  margin-top: var(--space-4);
-}
-
-@media (min-width: 800px) {
-  .post .post__cover,
-  .post .post__cover--none {
-    width: 750px;
-    height: 380px;
-  }
-
-  .post .post__title {
-    font-size: var(--font-size-10);
-    line-height: var(--line-height-10);
-    margin: var(--space-6) 0 0;
-    letter-spacing: -0.025em;
-  }
-
-  .post .post__excerpt {
-    font-size: var(--font-size-5);
-    line-height: var(--line-height-5);
-    margin-top: var(--space-3);
-    margin-bottom: var(--space-3);
-  }
-
-  .post .post__date {
-    font-size: var(--font-size-3);
-    line-height: var(--line-height-2);
-    margin-top: var(--space-0);
-  }
-
-  .post .post__content {
-    margin-top: var(--space-7);
-  }
-}
-
 /* Layout */
 .container {
   margin: 0 auto;
+  display: flex;
+  width: 100%;
 }
 
 main {
-  margin-top: 45px;
+  padding: var(--space-outer);
+  padding-left:var(--space-outer-2);
+  width: calc(100% - (var(--space-outer-2) + var(--space-outer-2)) - 200px);
 }
 
 .header {
@@ -211,33 +131,51 @@ main {
 }
 
 @media (min-width: 575px) {
-  .container {
-    max-width: var(--max-width-1);
-    padding: 0 var(--space-4);
-  }
 
-  main {
-    margin-top: unset;
-  }
 
-  .header {
-    position: unset;
-    border-bottom: none;
-    margin: var(--space-3) 0;
-    padding: var(--space-2) 0;
-    background: unset;
-  }
 
-  .header .header__title {
-    margin: var(--space-3) 0 var(--space-2);
-    font-size: var(--font-size-5);
-  }
-
-  .footer {
-    margin: var(--space-3) 0;
-  }
 }
-
+/* PAGES */
+.page__title{
+  margin-top:0;
+}
+section a{
+ font-family: var(--font-family-serif)
+}
+/* About page */
+section.about{
+  display: flex;
+}
+section.about > *{
+  flex-basis: 30%;
+  align-items: flex-start;
+}
+section.about > img{
+  margin-left: var(--space-outer);
+  height: auto;
+  flex-basis: 70%;
+}
+/* Commercial */
+.commercial ul{
+  list-style: none;
+  border-top:1px dashed;
+  padding-left:0;
+  width: 100%;
+}
+.commercial li{
+  border-bottom:1px dashed;
+  padding: var(--space-outer);
+}
+.commercial li a{
+  display: flex;
+  font-family: var(--font-family-sans);
+  text-decoration: none;
+  width: 100%;
+  justify-content: space-between;
+}
+/* .commercial li a:hover{
+  font-family: var(--font-family-serif)
+} */
 /* Welcome component */
 
 .welcome__container {
@@ -276,7 +214,6 @@ main {
 }
 
 .steps .steps__text {
-  font-family: var(--font-family-serif);
   line-height: var(--line-height-2);
 }
 
@@ -309,7 +246,6 @@ main {
 
   .logos .logos__plus {
     display: flex;
-    font-family: var(--font-family-sans);
     font-weight: 800;
     font-size: var(--font-size-7);
     line-height: var(--line-height-6);
@@ -364,7 +300,6 @@ main {
 }
 
 .card .card__title {
-  font-family: var(--font-family-sans);
   font-weight: 800;
   font-size: var(--font-size-7);
   line-height: var(--line-height-6);
@@ -373,7 +308,6 @@ main {
 }
 
 .card .card__excerpt {
-  font-family: var(--font-family-serif);
   font-weight: 400;
   font-size: var(--font-size-4);
   line-height: var(--line-height-3);
@@ -382,7 +316,6 @@ main {
 
 .card .card__date {
   font-weight: 600;
-  font-family: var(--font-family-sans);
   font-size: var(--font-size-1);
   margin-top: calc(var(----space-4) + 7);
 }

@@ -6,22 +6,27 @@ import Container from '~/components/Container'
 import Welcome from '~/components/Welcome'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
-import { getPosts, type Post, postsQuery } from '~/lib/sanity.queries'
+import { getProjects, type Project, projectsQuery,   
+  getNews,
+  type News,
+  newsBySlugQuery, } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
 
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
-    posts: Post[]
+    projects: Project[],
+    news: News
   }
 > = async ({ draftMode = false }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const posts = await getPosts(client)
-
+  const projects = await getProjects(client)
+  const news = await getNews(client, "News")
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
-      posts,
+      projects,
+      news
     },
   }
 }
@@ -29,12 +34,15 @@ export const getStaticProps: GetStaticProps<
 export default function IndexPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const [posts] = useLiveQuery<Post[]>(props.posts, postsQuery)
+  const [projects] = useLiveQuery<Project[]>(props.projects, projectsQuery)
+  const [news] = useLiveQuery(props.news, newsBySlugQuery, {
+    slug: props.news.title,
+  })
   return (
-    <Container>
+    <Container news={news}>
       <section>
-        {posts.length ? (
-          posts.map((post) => <Card key={post._id} post={post} />)
+        {projects.length ? (
+          projects.map((project) => <Card key={project._id} project={project} />)
         ) : (
           <Welcome />
         )}
