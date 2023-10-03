@@ -48,7 +48,7 @@ export default function Welcome() {
               >
                 our awesome community
               </a>
-              , and share tips and discuss!
+              help
             </p>
           </li>
         </ul>
