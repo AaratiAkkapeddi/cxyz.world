@@ -98,6 +98,7 @@ export interface Blog {
   slug: Slug
   mainImage?: ImageAsset
   body: PortableTextBlock[]
+  questions: string[]
 }
 
 /****************COMMERCIAL******************/

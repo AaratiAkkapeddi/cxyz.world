@@ -3,6 +3,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Image from 'next/image'
 import { useLiveQuery } from 'next-sanity/preview'
 import Card from '~/components/Card'
+import {useState, useEffect} from "react"
 import Container from '~/components/Container'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
@@ -56,6 +57,7 @@ export const getStaticProps: GetStaticProps<
 export default function blogPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
+
   const [blog] = useLiveQuery(props.blog, blogBySlugQuery, {
     slug: "blog",
   })
@@ -63,28 +65,38 @@ export default function blogPage(
     slug: props.news.title,
   })
   const [posts] = useLiveQuery<Post[]>(props.posts, postsQuery)
+  const [randomNumber, setRandomNumber] = useState(0)
+  const [modal, setModal] = useState(true)
+  const generateRandomNumber = () => {
+    let r = Math.floor(Math.random() * blog.questions.length);
+    setRandomNumber(r)
+
+  }
+  const closeModal = () => {
+     setModal(false)
+  }
+  useEffect(() => {
+    // Update the document title using the browser API
+    generateRandomNumber()
+  });
 
   return (
     <Container news={news}>
+      <div className={modal ? "modal" : "closed modal"}>
+        <span>{blog.questions[randomNumber]}</span>
+         <textarea></textarea>
+         <div>
+          <button onClick={closeModal}>submit</button>
+         <button onClick={closeModal}>let go</button>
+         </div>
+      </div>
       <section className="blog">
         
         <div className="page__container">
-          <h1 className="page__title">{blog.title}</h1>
-          {/* <div className="page__content">
-            <PortableText value={blog.body} />
-          </div> */}
+          <h1 className="page__title">
+          {blog.title}</h1>
         </div>
-        {blog.mainImage ? (
-          <Image
-            className="page__cover"
-            src={urlForImage(blog.mainImage).url()}
-            height={231}
-            width={367}
-            alt=""
-          />
-        ) : (
-          <div className="page__cover--none" />
-        )}
+   
         {posts.length ? (
           posts.map((post) => <Card key={post._id} post={post} />)
         ) : (

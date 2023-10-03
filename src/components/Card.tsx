@@ -3,29 +3,31 @@ import Image from 'next/image'
 import { urlForImage } from '~/lib/sanity.image'
 import { type Post } from '~/lib/sanity.queries'
 import { formatDate } from '~/utils'
+import { PortableText } from '@portabletext/react'
+import { useState } from "react";
 
 export default function Card({ post }: { post: Post }) {
+  const [toggle, setToggle] = useState(false);
+  const toggleToggle = () => setToggle(!toggle);
   return (
     <div className="card">
-      {post.mainImage ? (
-        <Image
-          className="card__cover"
-          src={urlForImage(post.mainImage).width(500).height(300).url()}
-          height={300}
-          width={500}
-          alt=""
-        />
-      ) : (
-        <div className="card__cover--none" />
-      )}
-      <div className="card__container">
-        <h3 className="card__title">
-          <a className="card__link" href={`/post/${post.slug.current}`}>
+ 
+      <div onClick={toggleToggle} className={toggle ?"open card__container" : "card__container"} >
+        <span className="card__date" >{toggle ? "- " : ""}{formatDate(post._createdAt)}</span>
+        <div>
+
+          <span className={toggle ? "card__title open": "card__title"}>
             {post.title}
-          </a>
-        </h3>
-        <p className="card__excerpt">{post.excerpt}</p>
-        <p className="card__date">{formatDate(post._createdAt)}</p>
+          </span>
+
+          <div className="card__body">
+            {toggle &&
+            <PortableText value={post.body} />
+            }
+            
+          </div>
+
+        </div>
       </div>
     </div>
   )
