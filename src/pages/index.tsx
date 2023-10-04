@@ -3,7 +3,7 @@ import { useLiveQuery } from 'next-sanity/preview'
 import Link from 'next/link'
 import Image from 'next/image'
 import { urlForImage } from '~/lib/sanity.image'
-
+import { useEffect } from 'react'
 // import Card from '~/components/Card'
 import Container from '~/components/Container'
 import Welcome from '~/components/Welcome'
@@ -34,6 +34,8 @@ export const getStaticProps: GetStaticProps<
   }
 }
 
+
+
 export default function IndexPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
@@ -41,7 +43,24 @@ export default function IndexPage(
   const [news] = useLiveQuery(props.news, newsBySlugQuery, {
     slug: props.news.title,
   })
-  const tiles = projects.map((p,i)=>{
+
+  const shuffle = (array) => {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex > 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  }
+  let tiles = projects.map((p,i)=>{
     let arr = [];
     p.media?.map((media,i)=>{
       
@@ -50,7 +69,7 @@ export default function IndexPage(
         if(media.image){
 
           arr.push(
-            <div className="img-tile">
+            <div key={i} className="img-tile">
               <Link href={"project/"+p.slug.current}>
                 <Image
                   src={urlForImage(media.image).url()}
@@ -58,7 +77,7 @@ export default function IndexPage(
                   width={500}
                   alt={media.image.altText?.toString()}
                 />  
-                <div className="hidden"><span>{p.title}</span></div>
+                <p className="hidden"><span>{p.title}</span></p>
               </Link>
             </div>
           )
@@ -68,6 +87,14 @@ export default function IndexPage(
     return arr
   })
 
+  useEffect(() => {
+    tiles = tiles.flat()
+    shuffle(tiles)
+  }, [])
+
+  
+  
+
   return (
     <Container news={news}>
       <section>
@@ -76,7 +103,7 @@ export default function IndexPage(
         ) : (
           <Welcome />
         )}
-        {tiles}
+        {shuffle(tiles)}
       </section>
     </Container>
   )
