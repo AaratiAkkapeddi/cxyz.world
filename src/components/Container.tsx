@@ -26,7 +26,7 @@ export default function Container(props, { children }: { children: React.ReactNo
         </ul>
 
       </nav>
-      <main>{props.children}</main>
+      <main className={props.fullBleed ? "full-bleed":""}>{props.children}</main>
     </div>
   )
 }

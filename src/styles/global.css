@@ -102,7 +102,9 @@ main {
   margin-left: calc(150px + var(--space-outer-2));
   width: calc(100% - (var(--space-outer-2) + var(--space-outer-2)));
 }
-
+main.full-bleed{
+  padding:0 var(--space-outer-2);
+}
 .header {
   display: flex;
   padding: 0 var(--space-1);
@@ -456,8 +458,56 @@ section.projects{
 
 
 /* homepage */
+
+
+/* film strip */
+.film-wrapper{
+  display: flex;
+}
+.film-strip{
+  height: calc(100vh);
+  overflow: hidden;
+}
+.film-strip:nth-child(even) .strip-inner{
+  position: relative;
+  bottom:100%;
+  top:auto;
+  animation-duration: 60s;
+  animation-name: slidedown;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+.film-strip .strip-inner{
+  position: relative;
+  top:0;
+  bottom: auto;
+  animation-duration: 60s;
+  animation-name: slideup;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes slideup {
+  from {
+    top: 0;
+  }
+
+  to {
+    top: -50%;
+  }
+}
+@keyframes slidedown {
+  from {
+    bottom: 100%;
+  }
+
+  to {
+    bottom: 50%;
+  }
+}
 .img-tile{
-  width: 20%;
   position: relative;
   padding: var(--space-outer);
 
@@ -478,7 +528,7 @@ section.projects{
 }
 .img-tile:hover img{
   mix-blend-mode: luminosity;
-  opacity: 0.5;
+  opacity: 0.2;
 }
 .img-tile .hidden span{
   text-align: center;
@@ -496,6 +546,6 @@ section.projects{
   top:0;
   left:0;
   color:white;
-  font-size: var(--font-size-large);
+  /* font-size: var(--font-size-large); */
   font-family: var(--font-family-serif)
 }

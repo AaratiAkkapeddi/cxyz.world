@@ -3,7 +3,7 @@ import { useLiveQuery } from 'next-sanity/preview'
 import Link from 'next/link'
 import Image from 'next/image'
 import { urlForImage } from '~/lib/sanity.image'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 // import Card from '~/components/Card'
 import Container from '~/components/Container'
 import Welcome from '~/components/Welcome'
@@ -43,7 +43,7 @@ export default function IndexPage(
   const [news] = useLiveQuery(props.news, newsBySlugQuery, {
     slug: props.news.title,
   })
-
+  const [arr, setArr] = useState([])
   const shuffle = (array) => {
     let currentIndex = array.length,  randomIndex;
   
@@ -62,14 +62,14 @@ export default function IndexPage(
   }
   let tiles = projects.map((p,i)=>{
     let arr = [];
-    p.media?.map((media,i)=>{
+    p.media?.map((media,x)=>{
       
       if(!media.private){
         
         if(media.image){
 
           arr.push(
-            <div key={i} className="img-tile">
+            <div key={i.toString() + x.toString()} className="img-tile">
               <Link href={"project/"+p.slug.current}>
                 <Image
                   src={urlForImage(media.image).url()}
@@ -89,21 +89,65 @@ export default function IndexPage(
 
   useEffect(() => {
     tiles = tiles.flat()
-    shuffle(tiles)
+    tiles = shuffle(tiles)
+    const chunkSize = Math.floor(tiles.length/8);
+    let chunx = []
+    for (let i = 0; i < tiles.length; i += chunkSize) {
+        const chunk = tiles.slice(i, i + chunkSize);
+        chunx.push(chunk)
+    }
+    setArr(chunx)
   }, [])
 
   
   
 
   return (
-    <Container news={news}>
+    <Container fullBleed={true} news={news}>
       <section>
-        {projects.length ? (
-          projects.map((project) => <div>{project.title}</div>)
-        ) : (
-          <Welcome />
-        )}
-        {shuffle(tiles)}
+        <div className='film-wrapper'>
+            <div className='film-strip'>
+            <div className='strip-inner'>
+              {arr[0]}
+            </div>
+          </div>
+          <div className='film-strip'>
+            <div className='strip-inner'>
+              {arr[1]}
+            </div>
+          </div>
+          <div className='film-strip'>
+            <div className='strip-inner'>
+              {arr[2]}
+            </div>
+          </div>
+          <div className='film-strip'>
+            <div className='strip-inner'>
+              {arr[3]}
+            </div>
+          </div>
+          <div className='film-strip'>
+            <div className='strip-inner'>
+              {arr[4]}
+            </div>
+          </div>
+          <div className='film-strip'>
+            <div className='strip-inner'>
+              {arr[5]}
+            </div>
+          </div>
+          <div className='film-strip'>
+            <div className='strip-inner'>
+              {arr[6]}
+            </div>
+          </div>
+          <div className='film-strip'>
+            <div className='strip-inner'>
+              {arr[7]}
+            </div>
+          </div>
+        </div>
+        
       </section>
     </Container>
   )
