@@ -1,5 +1,8 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
+import Link from 'next/link'
+import Image from 'next/image'
+import { urlForImage } from '~/lib/sanity.image'
 
 // import Card from '~/components/Card'
 import Container from '~/components/Container'
@@ -38,6 +41,33 @@ export default function IndexPage(
   const [news] = useLiveQuery(props.news, newsBySlugQuery, {
     slug: props.news.title,
   })
+  const tiles = projects.map((p,i)=>{
+    let arr = [];
+    p.media?.map((media,i)=>{
+      
+      if(!media.private){
+        
+        if(media.image){
+
+          arr.push(
+            <div className="img-tile">
+              <Link href={"project/"+p.slug.current}>
+                <Image
+                  src={urlForImage(media.image).url()}
+                  height={500}
+                  width={500}
+                  alt={media.image.altText?.toString()}
+                />  
+                <div className="hidden"><span>{p.title}</span></div>
+              </Link>
+            </div>
+          )
+        }
+      }
+    })
+    return arr
+  })
+
   return (
     <Container news={news}>
       <section>
@@ -46,6 +76,7 @@ export default function IndexPage(
         ) : (
           <Welcome />
         )}
+        {tiles}
       </section>
     </Container>
   )

@@ -453,6 +453,49 @@ section.projects{
 .media figcaption{
   margin-top: var(--space-outer-2);
 }
-.project__content{
 
+
+/* homepage */
+.img-tile{
+  width: 20%;
+  position: relative;
+  padding: var(--space-outer);
+
+}
+.img-tile img{
+  width: 100%;
+  height: auto;
+  margin:0;
+}
+.img-tile a{
+  overflow: hidden;
+}
+.img-tile:hover .hidden{
+  opacity: 1;
+}
+.img-tile:hover{
+  background-color: var(--red);
+}
+.img-tile:hover img{
+  mix-blend-mode: luminosity;
+  opacity: 0.5;
+}
+.img-tile .hidden span{
+  text-align: center;
+  width: 100%;
+}
+.img-tile .hidden{
+  opacity: 0;
+  margin: 0;
+  align-items: center;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top:0;
+  left:0;
+  color:white;
+  font-size: var(--font-size-large);
+  font-family: var(--font-family-serif)
 }
