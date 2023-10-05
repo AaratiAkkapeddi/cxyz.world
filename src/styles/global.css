@@ -484,6 +484,7 @@ section.project{
 .film-strip{
   width: 100%;
   overflow: hidden;
+  padding-top:calc(1em + var(--space-outer-2));
   position:relative;
 }
 .film-strip:nth-child(even) .strip-inner{
