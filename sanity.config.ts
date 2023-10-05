@@ -37,8 +37,8 @@ const iframeOptions = {
 
 export default defineConfig({
   basePath: '/studio',
-  name: 'chen-xiangyu',
-  title: 'Chen Xiangyu',
+  name: 'chen-xiangyun',
+  title: 'Chen Xiangyun',
   projectId,
   dataset,
   //edit schemas in './src/schemas'
