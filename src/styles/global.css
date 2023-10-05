@@ -113,6 +113,7 @@ main {
 }
 main.full-bleed{
   padding:0;
+  width: calc(100% - (var(--space-outer-2)) - 150px);
 }
 .header {
   display: flex;
@@ -559,9 +560,7 @@ section.project{
   /* border-bottom: 2px solid var(--red); */
   /* border-top: 2px solid var(--red);
 } */
-.projects .film-strip:first-child{
-  border-top: 2px solid var(--red);
-} 
+
 .film-title{
   margin-left: var(--space-outer);
 }
@@ -589,9 +588,9 @@ section.project{
 .project__card{
   position: absolute;
   top: 0;
-  left:0;
+  right:0;
   z-index: 3;
-  border-right: 2px solid var(--red);
+  border-left: 2px solid var(--red);
   border-bottom: 2px solid var(--red);
   background-color: var(--white);
   text-align: left;
@@ -603,7 +602,9 @@ section.project{
   /* align-items: center; */
   justify-content: center;
 }
-
+.film-strip:first-child .project__card{
+  border-top:2px solid var(--red);
+}
 .project__card img{
   width: auto;
   height: 200px;
