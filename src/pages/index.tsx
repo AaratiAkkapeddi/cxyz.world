@@ -109,40 +109,56 @@ export default function IndexPage(
             <div className='film-strip'>
             <div className='strip-inner'>
               {arr[0]}
+              {arr[0]}
+              {arr[0]}
             </div>
           </div>
           <div className='film-strip'>
             <div className='strip-inner'>
+              {arr[1]}
+              {arr[1]}
               {arr[1]}
             </div>
           </div>
           <div className='film-strip'>
             <div className='strip-inner'>
               {arr[2]}
+              {arr[2]}
+              {arr[2]}
             </div>
           </div>
           <div className='film-strip'>
             <div className='strip-inner'>
+              {arr[3]}
+              {arr[3]}
               {arr[3]}
             </div>
           </div>
           <div className='film-strip'>
             <div className='strip-inner'>
               {arr[4]}
+              {arr[4]}
+              {arr[4]}
             </div>
           </div>
           <div className='film-strip'>
             <div className='strip-inner'>
+              {arr[5]}
+              {arr[5]}
               {arr[5]}
             </div>
           </div>
           <div className='film-strip'>
             <div className='strip-inner'>
               {arr[6]}
+              {arr[6]}
+              {arr[6]}
             </div>
           </div>
           <div className='film-strip'>
             <div className='strip-inner'>
+              {arr[7]}
+              {arr[7]}
               {arr[7]}
             </div>
           </div>

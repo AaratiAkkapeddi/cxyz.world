@@ -53,7 +53,9 @@ a:link, a, a:visited{
 
 
 body {
+  /* border:2px solid var(--red); */
   margin: 0;
+  min-height:calc(100vh - 4px);
   color: var(--black);
   background-color: var(--white);
 }
@@ -63,6 +65,7 @@ nav{
   color: var(--red);
   display: flex;
   max-width: 150px;
+  z-index: 9;
   height: calc(100vh - 40px);
   padding: var(--space-outer);
   flex-direction: column;
@@ -74,6 +77,9 @@ nav{
 }
 nav h1{
   margin-top:0;
+}
+nav a:hover,.subnav a:hover{
+  color: var(--black);
 }
 nav a{
   text-decoration: none;
@@ -96,6 +102,9 @@ nav ul{
 .container.inverted nav, .container.inverted .subnav{
   border-color: var(--white);
 }
+.container.inverted nav a:hover,.container.inverted .subnav a:hover{
+  color: #ffffff;
+}
 
 main {
   padding: var(--space-outer) var(--space-outer-2);
@@ -103,7 +112,7 @@ main {
   width: calc(100% - (var(--space-outer-2) + var(--space-outer-2)));
 }
 main.full-bleed{
-  padding:0 var(--space-outer-2);
+  padding:0;
 }
 .header {
   display: flex;
@@ -408,6 +417,7 @@ section.projects .subnav{
   color: var(--red);
   border-left: 2px solid var(--red);
   color: var(--red);
+  z-index: 9;
   display: flex;
   max-width: 150px;
   height: calc(100vh - 40px);
@@ -415,6 +425,7 @@ section.projects .subnav{
   flex-direction: column;
   position: fixed;
   right: 0;
+  background-color: var(--white);
   top:0;
   justify-content: space-between;
 }
@@ -449,7 +460,7 @@ section.projects .media .img-wrapper{
 .info-toggle{
   cursor: pointer;
 }
-section.projects{
+section.project{
   width: calc(100% - (150px + var(--space-outer-2)));
 }
 .media figcaption{
@@ -463,59 +474,68 @@ section.projects{
 /* film strip */
 .film-wrapper{
   display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  /* height: 100vh; */
+  flex-direction: column;
+  position: relative;
 }
 .film-strip{
-  height: calc(100vh);
+  width: 100%;
   overflow: hidden;
+  position:relative;
 }
 .film-strip:nth-child(even) .strip-inner{
   position: relative;
-  bottom:100%;
-  top:auto;
   animation-duration: 60s;
-  animation-name: slidedown;
+  animation-name: slideright;
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-timing-function: linear;
 }
 .film-strip .strip-inner{
   position: relative;
-  top:0;
-  bottom: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  /* height: 100%; */
   animation-duration: 60s;
-  animation-name: slideup;
+  animation-name: slideleft;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
-@keyframes slideup {
+@keyframes slideleft {
   from {
-    top: 0;
+    right: 0;
   }
 
   to {
-    top: -50%;
+    right: 50%;
   }
 }
-@keyframes slidedown {
+@keyframes slideright {
   from {
-    bottom: 100%;
+    transform:translateX(-20%);
   }
 
   to {
-    bottom: 50%;
+    transform:translateX(10%);
   }
 }
 .img-tile{
   position: relative;
+  display: inline-block;
   padding: var(--space-outer);
 
 }
 .img-tile img{
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100px;
   margin:0;
+}
+.projects .img-tile img{
+  height: 200px;
 }
 .img-tile a{
   overflow: hidden;
@@ -523,6 +543,7 @@ section.projects{
 .img-tile:hover .hidden{
   opacity: 1;
 }
+
 .img-tile:hover{
   background-color: var(--red);
 }
@@ -533,6 +554,16 @@ section.projects{
 .img-tile .hidden span{
   text-align: center;
   width: 100%;
+}
+/* .projects .film-strip{
+  /* border-bottom: 2px solid var(--red); */
+  /* border-top: 2px solid var(--red);
+} */
+.projects .film-strip:first-child{
+  border-top: 2px solid var(--red);
+} 
+.film-title{
+  margin-left: var(--space-outer);
 }
 .img-tile .hidden{
   opacity: 0;
@@ -548,4 +579,38 @@ section.projects{
   color:white;
   /* font-size: var(--font-size-large); */
   font-family: var(--font-family-serif)
+}
+.img-tile.fade{
+  opacity: 1;
+}
+.project__card:hover{
+  color: var(--red)
+}
+.project__card{
+  position: absolute;
+  top: 0;
+  left:0;
+  z-index: 3;
+  border-right: 2px solid var(--red);
+  border-bottom: 2px solid var(--red);
+  background-color: var(--white);
+  text-align: left;
+  padding: var(--space-outer);
+  width: 150px;
+  height:calc(100% - var(--space-outer-2) - 2px);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.project__card img{
+  width: auto;
+  height: 200px;
+  display: none;
+}
+
+.project__card h1{
+  margin:0;
+  font-size: var(--font-size-regular);
 }
