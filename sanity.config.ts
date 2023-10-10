@@ -113,6 +113,7 @@ export default defineConfig({
             // Regular document types
             S.documentTypeListItem("post").title("Blog Posts"),
             S.documentTypeListItem("project").title("Projects"),
+            S.documentTypeListItem("qpc").title("QPC"),
             
           ])
 
