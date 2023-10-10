@@ -211,3 +211,40 @@ export interface Project {
   body: PortableTextBlock[]
 }
 
+/******* QPC*******/
+
+/****************COMMERCIAL******************/
+export const qpcQuery = groq`*[_type == "qpc" && defined(slug.current)] | order(_createdAt desc)`
+
+export async function getQpcs(client: SanityClient): Promise<Commercial[]> {
+  return await client.fetch(qpcQuery)
+}
+
+export const qpcBySlugQuery = groq`*[_type == "qpc" && slug.current == $slug][0]`
+
+export async function getQpc(
+  client: SanityClient,
+  slug: string,
+): Promise<Commercial> {
+  return await client.fetch(qpcBySlugQuery, {
+    slug,
+  })
+}
+
+export const qpcSlugsQuery = groq`
+*[_type == "qpc" && defined(slug.current)][].slug.current
+`
+
+export interface QPC {
+  _type: 'qpc'
+  _id: string
+  title?: string
+  slug: Slug
+  mainImage?: ImageAsset
+  body: PortableTextBlock[]
+  work: {
+    title: string,
+    client: string,
+    link: string
+  }[]
+}
