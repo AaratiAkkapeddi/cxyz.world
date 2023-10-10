@@ -99,6 +99,17 @@ export default defineConfig({
                   .documentId("commercial")
               ),
               S.listItem()
+              .title("QPC")
+              .id("qpc")
+              .child(
+                // Instead of rendering a list of documents, we render a single
+                // document, specifying the `documentId` manually to ensure
+                // that we're editing the single instance of the document
+                S.document()
+                  .schemaType("qpc")
+                  .documentId("qpc")
+              ),
+              S.listItem()
               .title("News")
               .id("news")
               .child(
@@ -113,7 +124,6 @@ export default defineConfig({
             // Regular document types
             S.documentTypeListItem("post").title("Blog Posts"),
             S.documentTypeListItem("project").title("Projects"),
-            S.documentTypeListItem("qpc").title("QPC"),
             
           ])
 
