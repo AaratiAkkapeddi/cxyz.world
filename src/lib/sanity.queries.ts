@@ -225,7 +225,7 @@ export const qpcBySlugQuery = groq`*[_type == "qpc" && slug.current == $slug][0]
 export async function getQpc(
   client: SanityClient,
   slug: string,
-): Promise<Commercial> {
+): Promise<QPC> {
   return await client.fetch(qpcBySlugQuery, {
     slug,
   })

@@ -9,7 +9,7 @@ import { getClient } from '~/lib/sanity.client'
 import { urlForImage } from '~/lib/sanity.image'
 import {
   getQpc,
-  type Qpc,
+  type QPC,
   qpcBySlugQuery,
   getNews,
   type News,
@@ -24,7 +24,7 @@ interface Query {
 
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
-    qpc: Qpc,
+    qpc: QPC,
     news: News
   },
   Query
