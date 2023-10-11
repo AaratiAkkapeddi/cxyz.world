@@ -65,15 +65,28 @@ export default function ProjectSlugRoute(
   const [news] = useLiveQuery(props.news, newsBySlugQuery, {
     slug: props.news.title,
   })
+  const lightbox = (e) => {
+    let el = e.target;
+    if(!el.classList.contains("img-wrapper")){
+      el = el.closest(".img-wrapper")
+    }
+    if(el.classList.contains("lightbox")){
+      el.classList.remove("lightbox");
+    }else{
+      el.classList.add("lightbox");
+    }
+    
+
+  }
   const [showInfo, setShowInfo] = useState(false)
   const openInfo = () => {
     setShowInfo(!showInfo)
   }
   const med = project.media.map((media, i)=>{
-    console.log(media)
+
     if(media.embed?.embed?.length > 0){
       return (
-      <div key={i} className='img-wrapper'>
+      <div key={i} onClick={lightbox} className='img-wrapper'>
         <div className="video-container" dangerouslySetInnerHTML={{ __html: media.embed?.embed }} />
         {media.embed?.caption &&
         <figcaption>{media.embed?.caption?.toString()}</figcaption>
@@ -81,13 +94,13 @@ export default function ProjectSlugRoute(
       </div>)
     }else{
       return (
-        <div key={i} className='img-wrapper'>
+        <div key={i} onClick={lightbox} className='img-wrapper'>
           <Image
           className="project__cover"
           src={urlForImage(media.image).url()}
           height={3000}
           width={3000}
-          alt={media.image.altText?.toString()}
+          alt={media.image.altText?.toString() || ""}
         />  
         {media.image?.caption &&
         <figcaption>{media.image?.caption?.toString()}</figcaption>
