@@ -197,6 +197,7 @@ export interface Project {
   title?: string
   slug: Slug
   video: boolean
+  private: boolean
   excerpt?: string
   mainImage?: ImageAsset
   media: {

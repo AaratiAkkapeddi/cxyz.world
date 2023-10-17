@@ -61,7 +61,7 @@ export default function projectsPage(
     
     p.previewPics?.map((media,x)=>{
 
-
+      if(p.private != true){
         
         if(media.image){
 
@@ -79,9 +79,10 @@ export default function projectsPage(
             </div>
           )
         }
-      
+      }
     })
     return [arr, [p.mainImage, p.title, "project/" + p.slug.current]]
+  
   })
   useEffect(() => {
     let film = tiles.map((t,i) => {

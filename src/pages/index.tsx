@@ -61,6 +61,9 @@ export default function IndexPage(
     return array;
   }
   let tiles = projects.map((p,i)=>{
+    if(p.private != true){
+
+    
     let arr = [];
     p.previewPics?.map((media,x)=>{
       
@@ -85,6 +88,7 @@ export default function IndexPage(
    
     })
     return arr
+  }
   })
 
   useEffect(() => {
