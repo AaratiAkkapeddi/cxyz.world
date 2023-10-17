@@ -62,9 +62,9 @@ export default function IndexPage(
   }
   let tiles = projects.map((p,i)=>{
     let arr = [];
-    p.media?.map((media,x)=>{
+    p.previewPics?.map((media,x)=>{
       
-      if(!media.private){
+
         
         if(media.image){
 
@@ -82,7 +82,7 @@ export default function IndexPage(
             </div>
           )
         }
-      }
+   
     })
     return arr
   })

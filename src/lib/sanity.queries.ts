@@ -200,7 +200,14 @@ export interface Project {
   excerpt?: string
   mainImage?: ImageAsset
   media: {
-    private: boolean,
+    image: ImageAsset,
+    embed:{
+      embed: string
+      altText: string
+      caption : string
+    },
+  }[],
+  previewPics: {
     image: ImageAsset,
     embed:{
       embed: string

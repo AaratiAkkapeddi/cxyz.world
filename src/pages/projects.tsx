@@ -59,9 +59,9 @@ export default function projectsPage(
   let tiles = projects.map((p,i)=>{
     let arr = [];
     
-    p.media?.map((media,x)=>{
+    p.previewPics?.map((media,x)=>{
 
-      if(!media.private){
+
         
         if(media.image){
 
@@ -79,7 +79,7 @@ export default function projectsPage(
             </div>
           )
         }
-      }
+      
     })
     return [arr, [p.mainImage, p.title, "project/" + p.slug.current]]
   })
