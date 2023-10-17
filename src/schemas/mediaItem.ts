@@ -23,12 +23,6 @@ export default defineType({
         private: false
     },
     fields: [
-        {
-        name:'private',
-        type: 'boolean',
-        title: 'Should this image be hidden from the homepage and projects page?',
-        description: 'set to true if you want to hide this image from other parts of the website',
-        },
         {name: 'image', 
          type: 'figure', 
          title: 'Image', 
