@@ -50,6 +50,9 @@ h1{
 a:link, a, a:visited{
   color: inherit;
 }
+main a:hover{
+  color:var(--red)
+}
 
 
 body {
@@ -72,6 +75,7 @@ nav{
   justify-content: space-between;
   position:fixed;
   top:0;
+  background-color: var(--white);
   left:0;
   border-right: 2px solid var(--red);
 }
@@ -461,6 +465,9 @@ section.projects .media .img-wrapper{
 .info-toggle{
   cursor: pointer;
 }
+.info-toggle:hover{
+  color:var(--red);
+}
 section.project{
   width: calc(100% - (150px + var(--space-outer-2)));
 }
@@ -597,6 +604,7 @@ section.project{
   width: 100%;
   height: 1em;
   display: flex;
+  text-decoration: none;
   flex-direction: column;
   justify-content: center;
 }
@@ -606,10 +614,35 @@ section.project{
   height: 200px;
   display: none;
 }
+.projects .img-tile:hover span{
+opacity: 0;
+}
+.projects .img-tile:hover img{
+  opacity: inherit;
+  mix-blend-mode: inherit;
+}
 
+.projects .film-strip:hover{
+  background-color: var(--red);
+}
+.projects .film-strip:hover .project__card{
+  color: var(--red);
+  border-color:var(--black);
+}
+.projects .film-strip:hover img{
+  opacity: 0.4;
+  mix-blend-mode: luminosity;
+}
+.projects .img-tile:hover{
+  background: transparent;
+}
 .project__card h1{
   margin:0;
+  font-family: var(--font-family-sans);
   font-size: var(--font-size-regular);
+}
+.projects .film-strip{
+  outline: 1px dashed;
 }
 
 /* QPC */
@@ -692,7 +725,7 @@ section.projects .media .lightbox::before{
     }
     .qpc-container nav ul:first-child li:first-child img{
       width: 100px;
-      margin-right: var(--space-outer);
+      margin-right: var(--space-outer-2);
     }
     .qpc-container nav{
       width:calc(100% - var(--space-outer-2));
@@ -702,7 +735,8 @@ section.projects .media .lightbox::before{
       height: auto;
       padding:0;
       position:relative;
-      margin-lefT:0;
+      margin-left:0;
+      margin-top:0;
     }
 
 

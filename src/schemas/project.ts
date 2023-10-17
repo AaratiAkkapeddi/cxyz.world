@@ -51,6 +51,14 @@ export default defineType({
         options: {layout: 'grid'},
         of: [{type: 'mediaItem'}],
     }),
+    defineField({  
+        name: 'previewPics',
+        title: 'Preview Pictures'
+        description: 'Image(s) that will appear on homepage & Projects page',
+        type: 'array',
+        options: {layout: 'grid'},
+        of: [{type: 'mediaItem'}],
+    }),
     defineField({
       name: 'body',
       title: 'Body',
