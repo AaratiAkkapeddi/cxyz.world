@@ -53,7 +53,7 @@ export default defineType({
     }),
     defineField({  
         name: 'previewPics',
-        title: 'Preview Pictures'
+        title: 'Preview Pictures',
         description: 'Image(s) that will appear on homepage & Projects page',
         type: 'array',
         options: {layout: 'grid'},
