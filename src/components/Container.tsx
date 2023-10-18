@@ -16,7 +16,7 @@ export default function Container(props, { children }: { children: React.ReactNo
       </ul>
       <nav className={mobileNav ? "open" : ""}>
         <ul>
-          <li><Link href="/"><h1>chen xiangyun<br></br>谌翔云</h1></Link></li>
+          <li><Link href="/"><h1>chen xiangyun&nbsp;<br></br>谌翔云</h1></Link></li>
           <li><Link href='/info'>Info</Link></li>
           <li><Link href='/projects'>Projects</Link></li>
           <li><Link href='/blog'>Blog</Link></li>

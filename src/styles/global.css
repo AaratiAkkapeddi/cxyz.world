@@ -765,6 +765,12 @@ section.projects .media .lightbox::before{
   nav.open{
     height: 70vh;
   }
+  nav h1{
+    transform: none;
+  }
+  nav h1 br{
+    display: none;
+  }
   .mobile-burger{
     position: fixed;
     top: 0;
