@@ -20,11 +20,6 @@ export default defineType({
         maxLength: 96,
       },
     }),
-    defineField({
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent',
-    }),
     defineField({  
       name: 'questions',
       title: 'Questions',

@@ -97,7 +97,6 @@ export interface Blog {
   title?: string
   slug: Slug
   mainImage?: ImageAsset
-  body: PortableTextBlock[]
   questions: string[]
 }
 
