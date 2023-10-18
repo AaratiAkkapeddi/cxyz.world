@@ -711,6 +711,9 @@ section.projects .media .lightbox::before{
   left:0;
   z-index: 999;
 }
+section.projects .media .img-wrapper.portrait-image{
+  margin: var(--space-outer-2) calc(var(--space-outer-2) * 4)
+}
 @media (max-width: 575px) {
     .qpc-container nav, .qpc-container section.qpc .subnav{
       width: 100%;
@@ -846,6 +849,7 @@ section.projects .media .lightbox::before{
     width: calc(100% - var(--space-outer-2));
     max-width: none;
   }
+  
   section.projects .subnav::before{
     content: "Projects:"
   }

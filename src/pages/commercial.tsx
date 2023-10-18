@@ -78,9 +78,9 @@ export default function commercialPage(
         
         <div className="page__container">
           <h1 className="page__title">{commercial.title}</h1>
-          {/* <div className="page__content">
-            <PortableText value={blog.body} />
-          </div> */}
+          <div className="page__content">
+            <PortableText value={commercial.body} />
+          </div>
         </div>
         <ul>
           {works}

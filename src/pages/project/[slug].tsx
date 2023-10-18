@@ -93,8 +93,14 @@ export default function ProjectSlugRoute(
         }
       </div>)
     }else{
+      let dimensionString = [];
+      dimensionString = urlForImage(media.image).url().split("-")[1].split(".")[0].split("x");
+      let cName = "img-wrapper"
+      if((parseInt(dimensionString[1]) / parseInt(dimensionString[0])) > 1){
+        cName += " portrait-image"
+      }
       return (
-        <div key={i} onClick={lightbox} className='img-wrapper'>
+        <div key={i} onClick={lightbox} className={cName}>
           <Image
           className="project__cover"
           src={urlForImage(media.image).url()}
