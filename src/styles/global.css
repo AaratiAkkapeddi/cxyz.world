@@ -82,6 +82,7 @@ nav{
 }
 nav h1{
   margin-top:0;
+  transform:rotate(-5deg) translate(1px, -1px);
 }
 nav a:hover,.subnav a:hover{
   color: var(--black);
