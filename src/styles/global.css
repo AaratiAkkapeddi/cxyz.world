@@ -864,4 +864,10 @@ section.projects .media .img-wrapper.portrait-image{
     width: 100%;
     margin:0;
   }
+  section.projects .media .lightbox img{
+    z-index: 9999;
+    width: 100%;
+    min-height: 0;
+    height: fit-content;
+  }
 }

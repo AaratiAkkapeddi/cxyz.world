@@ -69,7 +69,7 @@ export default function commercialPage(
 
 
   const works = commercial.work.map((w, i) => {
-    return(<li key={i}><a href={w.link}><span>{w.client}</span><span>{w.title}</span></a></li>)
+    return(<li key={i}><a target="_blank" href={w.link}><span>{w.client}</span><span>{w.title}</span></a></li>)
   })
 
   return (
