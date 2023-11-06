@@ -78,7 +78,10 @@ nav{
   top:0;
   background-color: var(--white);
   left:0;
-  border-right: 2px solid var(--red);
+  border-right: 3px solid var(--red);
+}
+nav ul:first-child li:first-child{
+  margin-bottom: var(--space-outer-2);
 }
 nav h1{
   margin-top:0;
@@ -763,7 +766,7 @@ section.projects .media .img-wrapper.portrait-image{
     height: 2em;
     overflow: hidden;
     border:none;
-    border-bottom:2px solid var(--red);
+    border-bottom:4px solid var(--red);
   }
   nav.open{
     height: 70vh;
@@ -787,21 +790,21 @@ section.projects .media .img-wrapper.portrait-image{
     display: none;
   }
   .mobile-burger.open{
-    right: 0;
-    top: 5px;
+    right: 5px;
+    top: 6px;
   }
   .mobile-burger.open li:first-child{
-    transform: rotate(45deg) translateY(10px);
+    transform: rotate(30deg) translateY(7px);
   }
   .mobile-burger.open li:nth-child(2){
-    transform: rotate(-45deg) translateY(-7px);
+    transform: rotate(-30deg) translateY(-5px);
   }
   .mobile-burger li{
-    height: 2px;
+    height: 4px;
     transform-origin: center;
     background-color: var(--red);
     width: 50px;
-    margin-bottom: var(--space-outer);
+    margin-bottom: calc(var(--space-outer)/2);
     display: block;
   }
   main.full-bleed{
