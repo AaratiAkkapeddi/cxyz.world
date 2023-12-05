@@ -66,7 +66,7 @@ export default function blogPage(
     slug: props.news.title,
   })
 
-  const [posts, setPosts] = useState(0)
+  const [posts, setPosts] = useState([])
   const [modal, setModal] = useState(true)
 
   const setSubstackPosts = (posts) =>{

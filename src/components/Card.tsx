@@ -6,14 +6,14 @@ import { formatDate } from '~/utils'
 import { PortableText } from '@portabletext/react'
 import { useState } from "react";
 
-export default function Card({ post }: { post: Post }) {
+export default function Card({ post }: { post: Post }, key ) {
   const [toggle, setToggle] = useState(false);
   const toggleToggle = () => setToggle(!toggle);
   return (
-    <div className="card">
+    <div key={key} className="card">
  
       <div onClick={toggleToggle} className={toggle ?"open card__container" : "card__container"} >
-        <span className="card__date" >{formatDate(new Date(post.pubDate))}{toggle ? "   -" : ""}</span>
+        <span className="card__date" >{formatDate(post.pubDate)}{toggle ? "   -" : ""}</span>
         <div>
 
           <span className={toggle ? "card__title open": "card__title"}>
