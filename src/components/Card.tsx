@@ -13,7 +13,7 @@ export default function Card({ post }: { post: Post }) {
     <div className="card">
  
       <div onClick={toggleToggle} className={toggle ?"open card__container" : "card__container"} >
-        <span className="card__date" >{formatDate(post._createdAt)}{toggle ? "   -" : ""}</span>
+        <span className="card__date" >{formatDate(new Date(post.pubDate))}{toggle ? "   -" : ""}</span>
         <div>
 
           <span className={toggle ? "card__title open": "card__title"}>
@@ -22,7 +22,7 @@ export default function Card({ post }: { post: Post }) {
 
           <div className="card__body">
             {toggle &&
-            <PortableText value={post.body} />
+             <div className="product-des" dangerouslySetInnerHTML={{ __html: post.content }}></div>
             }
             
           </div>

@@ -25,6 +25,7 @@ interface Query {
   [key: string]: string
 }
 
+
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
     blog: Blog,
@@ -64,21 +65,36 @@ export default function blogPage(
   const [news] = useLiveQuery(props.news, newsBySlugQuery, {
     slug: props.news.title,
   })
-  const [posts] = useLiveQuery<Post[]>(props.posts, postsQuery)
-  const [randomNumber, setRandomNumber] = useState(0)
-  const [modal, setModal] = useState(true)
-  const generateRandomNumber = () => {
-    let r = Math.floor(Math.random() * blog.questions.length);
-    setRandomNumber(r)
 
+  const [posts, setPosts] = useState(0)
+  const [modal, setModal] = useState(true)
+
+  const setSubstackPosts = (posts) =>{
+    setPosts(posts)
   }
   const closeModal = () => {
      setModal(false)
   }
+
   useEffect(() => {
     // Update the document title using the browser API
-    generateRandomNumber()
+    // generateRandomNumber()
+
+    const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fcxyz.substack.com%2Ffeed`
+    fetch(RSS_URL, {
+        method: "GET",
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      setSubstackPosts(data?.items)
+    })
   });
+const scale = (number, inMin, inMax, outMin, outMax) => {
+    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+}
+const s = (new Date()).getSeconds();
+const randomNumber = Math.floor(scale(s, 0, 60, 0, blog.questions.length - 1));
+
 
   return (
     <Container news={news}>
